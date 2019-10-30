@@ -25,7 +25,7 @@ const createStore = () => {
             remove: function(state, obj) {
                 state.todos.forEach((todo) => {
                     if(todo.content === obj.content && todo.created === obj.created){
-                        alert('remove ' + '"' + ob.content + '"');
+                        alert('remove ' + '"' + obj.content + '"');
                         state.todos.splice(i, 1);
                         return;
                     }

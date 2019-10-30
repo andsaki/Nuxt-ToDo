@@ -7,8 +7,8 @@
       <button @click="find">find</button>
     </div>
     <ul>
-      <li v-for="(todo, index) in display_todos" :key="index">
-        <span>{{ todo.content }}</span><span>({{ todo.created }})</span><span>×</span>
+      <li class="container__list" v-for="(todo, index) in display_todos" :key="index">
+        <span>{{ todo.content }}</span><span>({{ todo.created }})</span><span @click="remove(todo)">×</span>
       </li>
     </ul>
   </section>
@@ -47,7 +47,21 @@ export default {
                 this.find_flg = false;
                 this.content = '';
             }
+        },
+        remove: function(todo) {
+            this.$store.commit('remove', todo);
         }
     }
 }
 </script>
+
+<style lang="scss">
+.container {
+    background-color: bisque;
+
+    &__list {
+        color: aqua;
+    }
+}
+</style>
+
