@@ -1,17 +1,19 @@
-<template>
-  <section class="container">
-    <h1>Todo App</h1>
-    <p><input type="text" name="content" v-model="content" @focus="set_flg"/></p>
-    <div>
-      <button @click="insert">save</button>
-      <button @click="find">find</button>
-    </div>
-    <ul>
-      <li class="container__list" v-for="(todo, index) in display_todos" :key="index">
-        <span>{{ todo.content }}</span><span>({{ todo.created }})</span><span @click="remove(todo)">×</span>
-      </li>
-    </ul>
-  </section>
+<template lang="pug">
+  .todo
+    h1.todo__title Todo App
+    h2 {{year}}年
+    input.todo__form(type='text', name='content', v-model='content', @focus='set_flg')
+    div
+      button.todo__save-btn(@click='insert') save
+      button.todo__find-btn(@click='find') find
+    ul.todo__list
+      li.list(v-for='(todo, index) in display_todos', :key='index')
+        span.list__content
+          | {{ todo.content }}
+        span.list__created
+          | {{ todo.created }}
+        button.list__remove(@click='remove(todo)')
+          | ×
 </template>
 
 <script>
@@ -21,7 +23,8 @@ export default {
     data: function() {
         return {
             content: '',
-            find_flg: false
+            find_flg: false,
+            year: new Date().getFullYear()
         }
     },
     computed: {
@@ -56,11 +59,13 @@ export default {
 </script>
 
 <style lang="scss">
-.container {
-    background-color: bisque;
+.todo {
+    &__title {
+        text-align: center;
+    }
 
     &__list {
-        color: aqua;
+        list-style: none;
     }
 }
 </style>
